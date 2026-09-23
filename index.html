@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="数据工程 × AI 技术前沿周报">
+<title>数据工程 × AI 技术前沿周报｜2026-09-23</title>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--panel2:#fbfcfe;--text:#152033;--muted:#667085;--line:#e4e9f0;--accent:#315efb;--soft:#edf3ff;--p0:#d92d20;--p0bg:#fff1f0;--p1:#b54708;--p1bg:#fff6e8;--p2:#175cd3;--p2bg:#edf4ff}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1017;--panel:#111821;--panel2:#0f151d;--text:#e7edf6;--muted:#98a2b3;--line:#263141;--accent:#7aa2ff;--soft:#15203a;--p0:#ff8a80;--p0bg:#2b1717;--p1:#fdb66b;--p1bg:#2a2013;--p2:#8fb7ff;--p2bg:#142139}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:auto;padding:28px 20px 72px}.hero,.section{border:1px solid var(--line);background:var(--panel);border-radius:24px}.hero{padding:48px;background:linear-gradient(135deg,var(--panel),var(--soft));box-shadow:0 18px 50px rgba(24,39,75,.08)}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--accent)}h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:10px 0 14px}.hero p,.lead,.muted{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.chip{padding:7px 10px;border:1px solid var(--line);border-radius:999px;font-size:13px;background:var(--panel)}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.kpi{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.kpi b{display:block;font-size:22px}
+.nav{position:sticky;top:10px;z-index:5;display:flex;gap:8px;overflow:auto;margin:16px 0;padding:10px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(10px)}.nav a{white-space:nowrap;padding:6px 9px;color:var(--muted)}
+.section{padding:28px;margin-top:16px}.section h2{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel2)}.card h3{margin:6px 0 8px}.table{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:12px;color:var(--muted);background:var(--panel2)}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px}.p0{color:var(--p0);background:var(--p0bg)}.p1{color:var(--p1);background:var(--p1bg)}.p2{color:var(--p2);background:var(--p2bg)}.callout{margin-top:14px;padding:16px;border-left:4px solid var(--accent);border-radius:12px;background:var(--soft)}pre{overflow:auto;padding:18px;border-radius:14px;background:#0d1420;color:#dce7ff;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}.read{padding:14px 0;border-bottom:1px solid var(--line)}.read:last-child{border-bottom:0}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+@media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}@media(max-width:560px){.wrap{padding:14px 10px 48px}.hero,.section{padding:22px}.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+<div class="eyebrow">ENGINEERING INTELLIGENCE WEEKLY · ISSUE 001</div>
+<h1>数据工程 × AI<br>技术前沿周报</h1>
+<p>只保留真正值得跟进、能够进入数据平台生产环境的技术变化。聚焦实时计算、湖仓、Data Agent、智能运维、MCP / Skill、向量与多模态数据基础设施。</p>
+<div class="chips"><span class="chip">2026-09-23</span><span class="chip">Flink</span><span class="chip">Paimon</span><span class="chip">ClickHouse</span><span class="chip">LanceDB</span><span class="chip">Agent / MCP</span></div>
+<div class="kpis"><div class="kpi"><b>10</b><span class="muted">技术雷达</span></div><div class="kpi"><b>5</b><span class="muted">优先试点</span></div><div class="kpi"><b>1–3 天</b><span class="muted">推荐 PoC</span></div><div class="kpi"><b>Agentic</b><span class="muted">核心趋势</span></div></div>
+</section>
+<nav class="nav"><a href="#summary">执行摘要</a><a href="#radar">技术雷达</a><a href="#deep">深度分析</a><a href="#poc">优先试点</a><a href="#architecture">架构演进</a><a href="#reading">推荐阅读</a></nav>
+
+<section class="section" id="summary"><h2>01｜本周执行摘要</h2><p class="lead">本周真正值得关注的是：Agent 开始进入数据基础设施的控制面、调度面和存储层，而不再只是外部问答应用。</p><div class="grid">
+<div class="card"><h3>Flink Operator 可编程运维</h3><p class="muted">Autoscaler 扩展点使 Agent 可以参与扩缩容判断，同时继续由 Operator 承担安全执行边界。</p></div>
+<div class="card"><h3>Lakehouse 原生 Vector</h3><p class="muted">Paimon Vector Index 持续增强，部分语义检索场景开始有机会减少独立 Vector DB 数据副本。</p></div>
+<div class="card"><h3>MCP 进入治理层</h3><p class="muted">企业关注点从“能接多少 Tool”转向身份、权限、审计、限流、成本和可观测性。</p></div>
+<div class="card"><h3>多模态 Data Layer</h3><p class="muted">Lance / LanceDB 的价值越来越接近 AI Data Lake，而不只是另一套 Vector Database。</p></div>
+</div><div class="callout"><strong>趋势判断：</strong> Data Platform → Agent Application 正在演变为 <strong>Data Platform ↔ Agent Control Plane</strong>。</div></section>
+
+<section class="section" id="radar"><h2>02｜本周技术雷达</h2><div class="table"><table><thead><tr><th>优先级</th><th>方向</th><th>技术/项目</th><th>本周变化</th><th>成熟度</th><th>建议动作</th></tr></thead><tbody>
+<tr><td><span class="badge p0">P0</span></td><td>实时计算 × Agent</td><td>Flink K8s Operator 1.16</td><td>Autoscaler 可扩展决策链</td><td>高</td><td>立即 PoC</td></tr>
+<tr><td><span class="badge p0">P0</span></td><td>AI 数据基础设施</td><td>Paimon Vector Index 0.5</td><td>IVF-PQ / IVF-SQ 与缓存增强</td><td>中高</td><td>立即验证</td></tr>
+<tr><td><span class="badge p0">P0</span></td><td>Agent 治理</td><td>MCP / Tool Gateway</td><td>从 Tool 接入走向控制面治理</td><td>高</td><td>建设基线</td></tr>
+<tr><td><span class="badge p1">P1</span></td><td>多模态存储</td><td>Lance / LanceDB</td><td>十亿到百亿级 Vector / Multimodal</td><td>中高</td><td>深度验证</td></tr>
+<tr><td><span class="badge p1">P1</span></td><td>OLAP × AI</td><td>ClickHouse 26.8 LTS</td><td>Background Query、全文检索、湖仓增强</td><td>高</td><td>升级评估</td></tr>
+<tr><td><span class="badge p1">P1</span></td><td>Lakehouse × Agent</td><td>Doris + Paimon</td><td>Vector + OLAP 数据闭环</td><td>中</td><td>架构验证</td></tr>
+<tr><td><span class="badge p1">P1</span></td><td>Agent 运维</td><td>Kafka/Flink + Agentic Ops</td><td>流规则 + Agent + Evaluator 闭环</td><td>中高</td><td>重点借鉴</td></tr>
+<tr><td><span class="badge p2">P2</span></td><td>AI Dataset</td><td>Lance Training Pipeline</td><td>训练数据生命周期统一</td><td>中</td><td>持续关注</td></tr>
+<tr><td><span class="badge p2">P2</span></td><td>数据调度</td><td>Dagster Hybrid</td><td>Operational Context 平台化</td><td>高</td><td>架构借鉴</td></tr>
+<tr><td><span class="badge p2">P2</span></td><td>Data Agent Eval</td><td>异构数据评测</td><td>从 SQL 扩展到文件、多工具任务</td><td>研究→工程</td><td>引入评测</td></tr>
+</tbody></table></div></section>
+
+<section class="section" id="deep"><h2>03｜深度分析</h2><div class="grid">
+<div class="card"><span class="badge p0">P0 · Flink</span><h3>Operator 成为 Agent 的安全执行器</h3><p class="muted">让 Agent 输出 root cause、target parallelism、evidence、risk，再由 Policy 与 Operator 决定是否执行。适合 Kafka Lag、Backpressure、Checkpoint 和 TM 资源异常场景。</p></div>
+<div class="card"><span class="badge p0">P0 · Paimon</span><h3>Lakehouse Native Vector</h3><p class="muted">重点验证 Recall@10、P95/P99、索引构建、增量写入与 Compaction 影响，而不是默认替代专业 Vector DB。</p></div>
+<div class="card"><span class="badge p0">P0 · MCP</span><h3>Tool 治理成为核心</h3><p class="muted">统一 Identity、Permission、Audit、Timeout、Retry、Idempotency、Cost 与 Trace；Agent 不直接持有数据库和集群高权限。</p></div>
+<div class="card"><span class="badge p1">P1 · Lance</span><h3>多模态数据需要新的 Data Layer</h3><p class="muted">Image、Audio、Video、PDF、Embedding、Feature、Training Sample、Agent Memory 正形成新的基础设施需求。</p></div>
+<div class="card"><span class="badge p1">P1 · ClickHouse</span><h3>Agent Serving Database</h3><p class="muted">OLAP、JSON、Text、Vector、Lakehouse Query 与后台长任务逐步汇聚到同一系统，适合作为 Data Agent Serving Layer。</p></div>
+<div class="card"><span class="badge p1">P1 · Agent Ops</span><h3>规则 + Agent + Evaluator</h3><p class="muted">确定性判断留给 Flink/SQL；复杂根因交给 Agent；高风险动作继续通过 Policy 或人工审批。</p></div>
+</div></section>
+
+<section class="section" id="poc"><h2>04｜优先试点 Top 5</h2><div class="grid">
+<div class="card"><span class="badge p0">P0</span><h3>Flink AutoOps Agent</h3><p class="muted">验证 Lag 恢复时间、MTTR、误扩容率、资源成本。</p></div>
+<div class="card"><span class="badge p0">P0</span><h3>Agent Tool Gateway</h3><p class="muted">验证权限覆盖率、审计完整性、Tool 失败率与 Trace 完整性。</p></div>
+<div class="card"><span class="badge p1">P1</span><h3>Paimon Vector</h3><p class="muted">用真实 1000 万级 embedding 对比 Recall、P95/P99、索引与成本。</p></div>
+<div class="card"><span class="badge p1">P1</span><h3>Lance 多模态数据层</h3><p class="muted">验证语音、图片、PDF、Embedding 的统一存储、随机读取和检索。</p></div>
+<div class="card"><span class="badge p2">P2</span><h3>Data Agent Evaluation</h3><p class="muted">从 SQL Accuracy 扩展到 Retrieval、Tool Selection、File Reasoning 与 Final Answer。</p></div>
+</div></section>
+
+<section class="section" id="architecture"><h2>05｜架构演进</h2><pre>USER
+ │
+ ▼
+Data Agent
+ │ MCP / Skill
+ ▼
+Agent Tool Gateway
+ ├─ Identity / Permission
+ ├─ Policy / Audit
+ ├─ Cost / Trace
+ └─ Evaluation
+ │
+ ├── Semantic Context ── Catalog / Metric / Lineage
+ ├── Operations Context ─ Scheduler / Flink / YARN / K8s
+ └── Data Context ─────── Doris / ClickHouse / Paimon / Lance
+                           │
+                           ▼
+                     Data Platform</pre><div class="callout"><strong>架构关键词：</strong> Agentic Data Platform。Agent 与 Compute / Storage / Scheduler / Governance 形成受控闭环。</div></section>
+
+<section class="section"><h2>06｜未来 1–3 个月趋势</h2><div class="grid">
+<div class="card"><span class="badge p0">短期</span><h3>Agent Gateway / MCP Governance</h3><p class="muted">Tool 数量增长后，身份、权限、审计、成本和 Trace 会成为平台级问题。</p></div>
+<div class="card"><span class="badge p0">短期</span><h3>Agent + Operator</h3><p class="muted">Agent Decision → Policy → Operator 比直接 ChatOps 更容易进入生产。</p></div>
+<div class="card"><span class="badge p1">中期</span><h3>Lakehouse Native Vector</h3><p class="muted">重新判断哪些 Vector Workload 真正值得单独维护数据库。</p></div>
+<div class="card"><span class="badge p2">前沿</span><h3>Multimodal Lakehouse</h3><p class="muted">Text / Image / Audio / Video / Embedding / Feature / Memory 的统一表层持续成熟。</p></div>
+</div></section>
+
+<section class="section" id="reading"><h2>07｜推荐阅读</h2>
+<div class="read"><strong><a href="https://flink.apache.org/2026/09/15/apache-flink-kubernetes-operator-1.16.0-release-announcement/" target="_blank" rel="noopener noreferrer">Apache Flink Kubernetes Operator 1.16 Release</a></strong><div class="muted">优先级 ★★★★★ · 重点看 Autoscaler SPI 与 Scaling Executor。</div></div>
+<div class="read"><strong><a href="https://paimon.apache.org/docs/vector-index/releases.html" target="_blank" rel="noopener noreferrer">Apache Paimon Vector Index Releases</a></strong><div class="muted">优先级 ★★★★★ · 重点看 IVF-PQ / IVF-SQ、缓存与 benchmark。</div></div>
+<div class="read"><strong><a href="https://doris.apache.org/blog/apache-doris-paimon-agentic-ai-data-loop/" target="_blank" rel="noopener noreferrer">Doris × Paimon Agentic AI Data Loop</a></strong><div class="muted">优先级 ★★★★★ · 关注 Vector + OLAP 的真实工程 trade-off。</div></div>
+<div class="read"><strong><a href="https://www.confluent.io/blog/building-an-agentic-soc-on-a-stream/" target="_blank" rel="noopener noreferrer">Building an Agentic SOC on a Stream</a></strong><div class="muted">优先级 ★★★★★ · 看 Coordinator / Specialist / Evaluator 的职责拆分。</div></div>
+<div class="read"><strong><a href="https://www.lancedb.com/blog/how-lancedb-accelerates-vector-search-at-10-billion-scale" target="_blank" rel="noopener noreferrer">LanceDB at 10 Billion Scale</a></strong><div class="muted">优先级 ★★★★☆ · 理解大规模多模态与 Vector 数据层。</div></div>
+</section>
+
+<section class="section"><h2>08｜本周最值得亲自验证的一件事</h2><p><span class="badge p0">P0</span> <strong>Flink AutoOps Agent + Policy Gateway</strong></p><pre>Kafka Lag + Flink Metrics + Checkpoint + TM Metrics
+                      │
+                      ▼
+                  Ops Agent
+                      │
+        root_cause / action / confidence
+                      │
+                      ▼
+                   Policy
+                      │
+                      ▼
+               Flink Operator
+                      │
+                      ▼
+               Execute & Verify</pre><p class="muted">目标：验证 Agent 是否能在不直接持有集群高权限的情况下，完成 Detect → Diagnose → Plan → Guard → Execute → Verify。</p></section>
+
+<section class="section"><h2>数据来源与筛选原则</h2><p class="muted">优先官方 Release Note、项目文档、GitHub、论文与工程团队深度文章；过滤纯营销、重复资讯和无工程细节 Demo。厂商 benchmark 只作为参考，不直接等同于生产 workload。</p><p class="muted">本周更新时间：2026-09-23 13:47 · Asia/Shanghai</p></section>
+<footer class="footer">Data Engineering × AI Weekly · fixed homepage: index.html</footer>
+</main></body></html>
