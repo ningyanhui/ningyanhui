@@ -1,67 +1,86 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
-<title>数据工程 × AI 技术前沿周报｜2026-11-11</title>
-<style>
-:root{--bg:#f5f7fb;--surface:#fff;--surface2:#eef3fa;--text:#17243a;--muted:#637086;--line:#dfe6ef;--blue:#2457d6;--cyan:#0f8ea5;--green:#16845b;--amber:#a66a00;--red:#c43b3b;--shadow:0 8px 28px rgba(22,38,66,.07)}
-@media(prefers-color-scheme:dark){:root{--bg:#0c1119;--surface:#121923;--surface2:#182332;--text:#edf3fb;--muted:#a5b2c4;--line:#283548;--blue:#82a7ff;--cyan:#63cde0;--green:#67d2a5;--amber:#e5b96a;--red:#ff8989;--shadow:0 8px 28px rgba(0,0,0,.22)}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1180px;margin:auto;padding:28px 18px 60px}.hero{background:linear-gradient(135deg,#10244c,#2457d6);color:#fff;border-radius:24px;padding:34px 34px 30px;box-shadow:var(--shadow)}.hero h1{margin:0 0 8px;font-size:34px;letter-spacing:-.02em}.hero p{margin:5px 0;color:#dce8ff}.meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.pill{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.11);padding:5px 10px;border-radius:999px;font-size:13px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:18px}.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:var(--shadow)}.span12{grid-column:span 12}.span8{grid-column:span 8}.span6{grid-column:span 6}.span4{grid-column:span 4}.section{margin-top:28px}.section h2{font-size:24px;margin:0 0 12px}.section h3{font-size:18px;margin:0 0 7px}.muted{color:var(--muted)}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:15px;background:var(--surface2);border-radius:13px}.metric b{display:block;font-size:24px}.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:var(--surface2);margin:2px 4px 2px 0}.p0{background:#ffe7e7;color:var(--red)}.p1{background:#fff0d4;color:var(--amber)}.p2{background:#e6f6ef;color:var(--green)}@media(prefers-color-scheme:dark){.p0{background:#3a2020}.p1{background:#3b2e18}.p2{background:#173629}}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:11px 9px;vertical-align:top;text-align:left}th{background:var(--surface2);font-weight:650}.radar td:first-child{white-space:nowrap}.callout{border-left:4px solid var(--blue);padding:12px 15px;background:var(--surface2);border-radius:8px}.arch{background:#0b1220;color:#dbe7ff;border-radius:14px;padding:18px;overflow:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.steps li{margin:7px 0}.rank{font-weight:800;color:var(--blue)}footer{margin-top:34px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:20px}@media(max-width:800px){.hero h1{font-size:27px}.summary{grid-template-columns:repeat(2,1fr)}.span8,.span6,.span4{grid-column:span 12}table{display:block;overflow:auto;white-space:normal}}
-</style></head>
-<body><div class="wrap">
-<header class="hero"><div class="pill">2026 · 第 46 期</div><h1>数据工程 × AI 技术前沿周报</h1><p>2026-11-11｜生产落地优先｜Data Platform × Agent × 实时计算</p><div class="meta"><span class="pill">10 项技术雷达</span><span class="pill">4 个 P0/P1 试点</span><span class="pill">7 项深度分析</span><span class="pill">5 篇优先阅读</span></div></header>
-<section class="section"><h2>1. 本周执行摘要</h2><div class="summary"><div class="metric"><b>Airflow 3.4</b><span class="muted">AI Agent 正式进入工作流原语</span></div><div class="metric"><b>ClickHouse + Xata</b><span class="muted">AI 数据平台开始整合事务/分析/观测</span></div><div class="metric"><b>MCP 2.3.0</b><span class="muted">Server 生态继续向生产化推进</span></div><div class="metric"><b>Pando</b><span class="muted">Agent 并发正在反向推动基础设施重构</span></div></div><div class="card" style="margin-top:14px"><ul><li><b>Airflow 3.4.0</b> 是本周最直接的数据平台工程更新：Task Loops、多语言 DAG，以及可带人工审批的 AI/Agent Task，让 Agent 开始成为调度系统中的一等执行单元。</li><li><b>ClickHouse 11 月 9 日的平台扩展</b>把 Postgres、Observability、安全与 AI 工程放进同一平台，并收购 Xata；这是“Agent 数据基础设施”从单一 OLAP 向事务状态 + 分析 + 观测融合的明确信号。</li><li><b>MCP Servers v2.3.0</b> 于 11 月 4 日发布，filesystem、memory、git、fetch、time 等官方服务器继续快速演进；生产环境应开始把 MCP Server 当成受治理的内部基础设施，而不是简单插件。</li><li><b>OpenAI Pando</b> 展示了 Agent 高并发如何逼迫底层系统重做：保持 Git 协议兼容，通过并行写、缓存复用、请求去重把 push 中位延迟降低约 80%，日服务量接近 PB 级。对数据平台的启示是：Agent 化后，调度、元数据、日志、对象存储和执行 API 都可能遇到“机器并发”新瓶颈。</li></ul><div class="callout"><b>趋势判断：</b>数据平台正在从“给 Agent 数据”演进为“承载 Agent Workload”——调度、身份、权限、Tool/MCP、查询、观测、评测与成本控制开始形成统一控制面。</div></div></section>
-<section class="section"><h2>2. 本周技术雷达</h2><div class="card"><table class="radar"><thead><tr><th>方向</th><th>技术/项目</th><th>本周变化</th><th>成熟度</th><th>落地价值</th><th>建议动作</th></tr></thead><tbody>
-<tr><td>调度/Agent</td><td><b>Airflow 3.4.0</b></td><td>Task Loops、多语言 DAG、common.ai provider、Human Approval</td><td><span class="tag p0">生产可用</span></td><td>把 Agent 纳入 DAG、审批、重试、审计体系</td><td>P0：做 Agent Task × Spark/Flink PoC</td></tr>
-<tr><td>AI Data Platform</td><td><b>ClickHouse + Xata</b></td><td>平台扩展至 Postgres、Observability、安全，并收购 Xata</td><td><span class="tag p1">平台演进</span></td><td>事务状态与分析/Agent 数据底座融合</td><td>P1：研究 Agent state + analytics 双存储</td></tr>
-<tr><td>Agent / MCP</td><td><b>MCP Servers v2.3.0</b></td><td>11/4 发布，官方 servers 继续版本化</td><td><span class="tag p1">生态成熟</span></td><td>内部 Tool Gateway、Skill/MCP Registry 的基础</td><td>P0：统一 Tool 身份、权限、审计</td></tr>
-<tr><td>Agent 基础设施</td><td><b>OpenAI Pando</b></td><td>11/2 发布生产实践；近 PB/日 Git 数据，push 中位延迟约降 80%</td><td><span class="tag p1">大规模实践</span></td><td>验证 Agent 并发会重塑底层存储/缓存/调度</td><td>P1：检查平台是否存在“人类并发假设”</td></tr>
-<tr><td>Tool Engineering</td><td><b>SPRING-5</b></td><td>11/5 新 benchmark：工具文档修复按调用成本评估</td><td><span class="tag p2">研究/可复现</span></td><td>把 Tool schema 质量纳入 Agent 成本与成功率评测</td><td>P1：给 MCP/Skill 建 call-cost 指标</td></tr>
-<tr><td>异构调度</td><td><b>HeteroTask</b></td><td>11/5 论文：CPU/GPU 多变体调度 + 在线校准</td><td><span class="tag p2">研究</span></td><td>为 Agent/ML/Data 混合 workload 提供调度优化思路</td><td>P2：关注 YARN/K8s GPU 调度策略</td></tr>
-<tr><td>实时计算</td><td><b>Flink 2.2.x</b></td><td>本周未发现新的稳定版；2.2.1 仍是 2026 年稳定基线之一</td><td><span class="tag p1">成熟</span></td><td>重点不是追版本，而是实时 AI / SQL Model 能力验证</td><td>P1：评估 Model DDL + PTF + AI 调用</td></tr>
-<tr><td>流平台</td><td><b>Kafka 4.4.0</b></td><td>10/22 已发布，当前 supported release；本周重点应转向升级评估</td><td><span class="tag p1">生产可用</span></td><td>影响实时数据底座与 Flink 消费链路</td><td>P1：先做兼容性/回放测试</td></tr>
-<tr><td>Data Agent</td><td><b>AgentSM / Text-to-SQL</b></td><td>语义记忆复用执行轨迹，降低 token 与 trajectory</td><td><span class="tag p2">论文</span></td><td>减少企业 Text-to-SQL 反复探索成本</td><td>P1：建立企业 SQL Trace Memory</td></tr>
-<tr><td>Lakehouse/多模态</td><td><b>Lance</b></td><td>分支、零拷贝 clone、向量/地理数据一体化方向已形成工程路线</td><td><span class="tag p1">工程化</span></td><td>AI 数据集、embedding、索引和版本实验</td><td>P2：用于多模态数据资产 PoC</td></tr>
-</tbody></table></div></section>
-<section class="section"><h2>3. 深度分析</h2><div class="grid">
-<div class="card span6"><h3>① Airflow 3.4：Agent 进入调度系统</h3><p><b>是什么：</b>Airflow 3.4 引入 bounded Task Loops、多语言 DAG，并继续完善 common.ai provider，让 LLM/Agent 成为普通 Airflow task，同时支持 human approval。</p><p><b>核心创新：</b>不是再做一个 Agent Framework，而是把 Agent 放进已有的 DAG、依赖、重试、状态和审批体系。</p><p><b>推荐架构：</b>Agent Planner → Airflow DAG → Policy/Approval → Spark/Flink/Doris Tool → Result/Eval → Audit。</p><p><b>落地边界：</b>Agent 负责计划和低风险决策；资源分配、SQL 白名单、集群操作和发布仍由确定性控制器执行。</p><p><b>PoC：</b>让 Agent 诊断一个 Spark 失败任务，生成修复计划，调用受控 Tool 重跑；指标看成功率、人工介入率、恢复时间和误操作率。</p></div>
-<div class="card span6"><h3>② ClickHouse + Xata：AI 数据平台开始融合状态与分析</h3><p><b>事实：</b>11/9 ClickHouse 宣布平台扩展，并收购 Xata；官方定位覆盖 Postgres、Observability、安全和 AI engineering。</p><p><b>为什么重要：</b>Agent 不只是查询分析数据，还需要短生命周期状态、会话、工具结果、trace、evaluation 与业务数据。</p><p><b>推荐架构：</b>OLTP/Agent State → Postgres；事件/Trace → Kafka；分析/评测 → ClickHouse；对象/大模型数据 → Lakehouse；统一 MCP/Policy Gateway。</p><p><b>风险：</b>平台整合不等于架构必须整合；事务一致性、数据驻留、成本模型和供应商锁定仍要独立评估。</p></div>
-<div class="card span6"><h3>③ MCP Servers v2.3：从插件变成平台组件</h3><p><b>事实：</b>官方 servers 11/4 发布 v2.3.0，包含 filesystem、memory、git、fetch、time 等包更新。</p><p><b>工程含义：</b>Tool catalog、schema、身份、权限、审计、版本兼容与限流需要统一治理。MCP 2026-07-28 规范已经转向无状态核心、缓存 hints、header routing 和更强授权。</p><p><b>建议：</b>内部不要让 Agent 直连数据库/集群 API；统一经过 Tool Gateway，映射用户/Agent identity，并记录 request→tool→side effect。</p></div>
-<div class="card span6"><h3>④ Pando：Agent 并发正在重塑基础设施</h3><p><b>事实：</b>OpenAI 公开 Pando Git backend：通过按分支并行写、packfile 复用、缓存与请求合并，生产 push 中位延迟降低近 80%，服务近 PB Git 数据/日。</p><p><b>可迁移启示：</b>数据平台也可能出现 Agent burst：大量并发 metadata 查询、SQL explain、job submit、log fetch、catalog scan。</p><p><b>建议：</b>在 API Gateway、Catalog、Scheduler 和 OLAP Gateway 做 request coalescing、热点缓存、幂等 token、队列隔离和 workload-aware rate limit。</p></div>
-<div class="card span6"><h3>⑤ SPRING-5：Tool schema 质量要用成本衡量</h3><p><b>事实：</b>论文提出 20 个 tool families、344 个任务，以调用次数/成本而不仅是 accuracy 评估文档修复；研究显示批量重写对成本缺口的改善明显高于简单在线自演化。</p><p><b>数据平台启示：</b>一个“看起来正确”的 MCP Tool，如果 schema 让 Agent 多调用 3 次、错误路由一次，就会放大 token、延迟和资源成本。</p><p><b>PoC：</b>为 20 个内部数据平台 Tools 建 schema A/B，统计 calls/correct-task、P95 latency、失败重试率。</p></div>
-<div class="card span6"><h3>⑥ AgentSM：把 SQL Trace 变成长期记忆</h3><p><b>核心思路：</b>不是把历史 scratchpad 原样塞进上下文，而是把执行轨迹整理为可复用的结构化语义记忆。论文报告在 Spider 2.0 Lite 上达到 44.8% execution accuracy，并降低平均 token 与 trajectory 长度。</p><p><b>企业落地：</b>保存“问题 → 业务实体 → 表 → SQL → 执行结果 → 人工修正”的结构化 Trace，并按业务域/指标域检索。</p><p><b>风险：</b>错误 SQL 也可能被记忆，因此 Memory 必须带 quality score、owner、数据版本和过期策略。</p></div>
-<div class="card span6"><h3>⑦ HeteroTask：调度优化从静态 profiling 走向在线校准</h3><p>论文针对 CPU/GPU 异构集群，结合多变体规划、buffer 生命周期建模和 Bayesian optimization 校准运行时开销，在实验环境中获得明显 makespan 改善。</p><p><b>工程启示：</b>对 Data + AI 混合集群，历史平均耗时可能不足以指导 Agent/Scheduler 决策，应把运行时反馈纳入调度模型。</p></div>
-</div></section>
-<section class="section"><h2>4. 优先试点 Top 4</h2><div class="grid"><div class="card span6"><span class="tag p0">P0</span><h3>Agent × Airflow × Spark/Flink 故障自愈</h3><p><b>为什么现在：</b>调度器已经开始原生承载 Agent task。</p><p><b>PoC：</b>读取失败 DAG → Agent 分类根因 → 选择受控 Skill → 自动重试/参数修复 → 人工审批危险动作。</p><p><b>指标：</b>MTTR、自动恢复率、误操作率、人工介入率、额外资源成本。</p></div><div class="card span6"><span class="tag p0">P0</span><h3>MCP Tool Gateway for Data Platform</h3><p><b>为什么现在：</b>MCP server 生态已经开始版本化，但生产治理仍需平台层补齐。</p><p><b>PoC：</b>封装 10 个数据平台 Tool：SQL、YARN、Flink、Kafka、Doris、Catalog、Lineage、DQ。</p><p><b>指标：</b>授权覆盖率、Tool success rate、P95 latency、审计完整率、错误副作用率。</p></div><div class="card span6"><span class="tag p1">P1</span><h3>SQL Trace Memory</h3><p><b>PoC：</b>将历史问答、SQL、执行计划和人工纠错构建为结构化 memory，比较无 memory / vector memory / semantic trace memory。</p><p><b>指标：</b>execution accuracy、平均 tool calls、token、P95、重复错误率。</p></div><div class="card span6"><span class="tag p1">P1</span><h3>Agent Burst Protection</h3><p><b>PoC：</b>模拟 100 个 Agent 同时查询 Catalog/SQL Gateway，加入 request coalescing + priority queue + cache。</p><p><b>指标：</b>吞吐、P95/P99、数据库 QPS、缓存命中率、队列等待时间。</p></div></div></section>
-<section class="section"><h2>5. 架构演进视角</h2><div class="card"><div class="arch">                    ┌──────────────────────────────┐
-                    │       Data / Ops Agent       │
-                    │ Planner · Memory · Evaluator │
-                    └──────────────┬───────────────┘
-                                   │ MCP / Skill
-                                   ▼
-                    ┌──────────────────────────────┐
-                    │      Agent Control Plane      │
-                    │ Identity · Policy · Approval  │
-                    │ Audit · RateLimit · Eval      │
-                    └──────────────┬───────────────┘
-                                   │
-          ┌────────────────────────┼────────────────────────┐
-          ▼                        ▼                        ▼
-   ┌──────────────┐        ┌──────────────┐        ┌──────────────┐
-   │ Scheduler    │        │ Query Gateway│        │ Tool Gateway │
-   │ Airflow/K8s  │        │ Doris/CH     │        │ YARN/Flink   │
-   └──────┬───────┘        └──────┬───────┘        └──────┬───────┘
-          │                        │                        │
-          ▼                        ▼                        ▼
-      Spark/Flink             OLAP/Lakehouse            Kafka/OBS
-          │                        │                        │
-          └────────────────────────┼────────────────────────┘
-                                   ▼
-                       Trace / Lineage / DQ / Cost
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>数据工程 × AI 技术前沿周报｜2026-11-18</title><style>
+:root{--bg:#f5f7fb;--c:#fff;--t:#17243a;--m:#66748a;--l:#dfe6ef;--b:#2457d6;--g:#16845b;--a:#a66a00;--r:#c43b3b;--p:#7046b8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif}.w{max-width:1180px;margin:auto;padding:24px 16px 60px}.hero{background:linear-gradient(135deg,#14284a,#2457d6 58%,#087f96);color:#fff;border-radius:22px;padding:30px;box-shadow:0 10px 32px #16264218}.ey{font-size:12px;letter-spacing:.14em;opacity:.75}.hero h1{font-size:34px;margin:8px 0}.hero p{opacity:.88}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip,.tag{display:inline-block;border-radius:999px;padding:4px 9px;font-size:11px;border:1px solid var(--l)}.chip{background:#ffffff1c;border:0}.tag{color:var(--m)}section{margin-top:28px}h2{font-size:23px;margin:0 0 12px}.sub{color:var(--m);font-size:12px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--c);border:1px solid var(--l);border-radius:15px;padding:17px;box-shadow:0 8px 25px #1626420b}.card h3{margin:0 0 8px;font-size:17px}.card p{margin:7px 0;color:var(--m);font-size:14px}.key{border-left:4px solid var(--b)}table{width:100%;border-collapse:collapse;background:var(--c);border:1px solid var(--l);font-size:13px}th,td{padding:10px;border-bottom:1px solid var(--l);vertical-align:top;text-align:left}th{background:var(--bg)}.score{font-weight:700;color:var(--b)}.detail{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-bottom:14px}.detail h3{font-size:19px}.list{margin:7px 0 0 18px;padding:0;color:var(--m)}.list li{margin:4px 0}.quote{border-left:4px solid #087f96;background:var(--bg);padding:10px 14px;margin-top:12px}.arch{background:#0d1520;color:#d7e3f2;border-radius:12px;padding:15px;white-space:pre-wrap;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto}.pri{display:flex;gap:12px;flex-wrap:wrap}.pri .card{flex:1;min-width:245px}.p0{background:var(--r);color:#fff;border-color:var(--r)}.p1{background:var(--a);color:#fff;border-color:var(--a)}.p2{background:var(--p);color:#fff;border-color:var(--p)}a{color:var(--b);text-decoration:none}a:hover{text-decoration:underline}footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--l);color:var(--m);font-size:12px}@media(max-width:900px){.grid,.detail{grid-template-columns:1fr}table{display:block;overflow:auto}.hero h1{font-size:28px}}
+</style></head><body><div class="w">
+<header class="hero"><div class="ey">DATA ENGINEERING × AI · WEEKLY INTELLIGENCE</div><h1>数据工程 × AI 技术前沿周报</h1><p>第 47 期 · 2026-11-18 · Agent 数据基础设施 / Text-to-SQL / MCP-Skill / 实时分析 / 智能运维</p><div class="chips"><span class="chip">10 项技术雷达</span><span class="chip">7 项深度分析</span><span class="chip">4 个优先试点</span><span class="chip">5 篇优先阅读</span><span class="chip">生产落地导向</span></div></header>
 
-关键变化：Agent 不再直接“调用数据库”，而是作为受治理 workload 进入平台控制面。</div><p style="margin-top:14px"><b>架构判断：</b>未来 Data Platform 的核心抽象会从“数据表 + 作业”扩展到“数据资产 + 工作负载 + Tool + Agent Identity + Policy + Trace”。调度系统也会从 DAG scheduler 逐步变成 Agent-aware workflow runtime。</p></div></section>
-<section class="section"><h2>6. 趋势判断｜未来 1–3 个月</h2><div class="grid"><div class="card span4"><span class="tag p0">短期可落地</span><h3>Agent Control Plane</h3><p>统一身份、MCP Tool、审批、审计、限流和成本。</p></div><div class="card span4"><span class="tag p1">中期观察</span><h3>Agent-aware Scheduler</h3><p>将 Agent task 的优先级、预算、SLA 和资源需求纳入调度。</p></div><div class="card span4"><span class="tag p2">前沿研究</span><h3>可验证 Tool / Memory</h3><p>让 Tool schema、执行副作用和长期 memory 都带可验证质量信号。</p></div></div></section>
-<section class="section"><h2>7. 推荐阅读｜本周优先级</h2><div class="card"><ol><li><span class="rank">★★★★★</span> <a href="https://airflow.apache.org/blog/airflow-3.4.0/" target="_blank" rel="noopener noreferrer">Apache Airflow 3.4.0：Task Loops、DAG 多语言与 AI Agents</a> — 直接研究 Agent 如何进入调度系统。</li><li><span class="rank">★★★★★</span> <a href="https://clickhouse.com/blog/clickhouse-unifies-enterprise-ai-data-stack" target="_blank" rel="noopener noreferrer">ClickHouse：Expanded Enterprise AI Data Stack</a> — 观察事务、分析、观测与 Agent 数据基础设施融合。</li><li><span class="rank">★★★★★</span> <a href="https://openai.com/index/scaling-git-at-openai/" target="_blank" rel="noopener noreferrer">Scaling Git at OpenAI</a> — Agent 并发如何推动底层基础设施重构。</li><li><span class="rank">★★★★☆</span> <a href="https://github.com/modelcontextprotocol/servers/releases/tag/v2.3.0" target="_blank" rel="noopener noreferrer">MCP Servers v2.3.0</a> — 关注官方 Tool 生态如何版本化与生产化。</li><li><span class="rank">★★★★☆</span> <a href="https://arxiv.org/abs/2611.10040" target="_blank" rel="noopener noreferrer">SPRING-5</a> — 把 Tool schema 质量从“准确率”推进到“调用成本”。</li></ol></div></section>
-<section class="section"><h2>8. 本周最值得亲自验证的一件事</h2><div class="card"><h3>1–3 天 PoC：Agent × Airflow × Flink/YARN 故障自愈闭环</h3><ol class="steps"><li>采集 20–50 个历史 Flink/YARN 失败案例，整理错误日志、配置、运行指标与人工修复动作。</li><li>将“查日志、查 Job、查 Kafka lag、查 checkpoint、重跑、修改并行度”封装为只读/低风险/高风险三类 Tools。</li><li>用 Airflow 3.4 common.ai task 驱动 Agent，先只允许诊断和生成修复计划；高风险动作必须人工审批。</li><li>加入 Trace Memory，保存成功修复路径，并在第二轮任务中检索相似案例。</li><li>比较人工处理、普通 Agent、Agent + Memory + Workflow 三种模式。</li></ol><p><b>核心指标：</b>根因分类准确率、MTTR、自动恢复率、错误副作用率、Tool calls/task、LLM token/task、P95 完成时间。</p><p><b>预期结论：</b>如果 Agent + Workflow 能在不提高误操作率的情况下把 MTTR 降低 30% 以上，就值得进一步建设 Data/Ops Agent Control Plane；否则优先补日志、指标、知识和 Tool schema，而不是继续堆模型。</p></div></section>
-<footer><b>数据来源与筛选原则：</b>优先 Apache/官方项目 Release、官方工程博客、论文与可复现实验；过滤纯营销稿、重复资讯和缺少工程细节的内容。事实与分析判断分开标注；论文实验结果不直接等同生产收益。<br><b>本周更新时间：</b>2026-11-11 10:05（Asia/Shanghai）｜固定站点：https://ningyanhui.github.io/ningyanhui/</footer>
+<section><h2>1. 本周执行摘要</h2><div class="grid">
+<div class="card key"><h3>Agent Memory 正在数据化</h3><p>ClickHouse 11/13 发布 Loom：基于 ClickHouse 的共享代码索引与 Agent Memory，强调跨会话持久化及随代码变化校验。</p><p><b>判断：</b>Data Agent 应把 SQL、Schema、执行计划、人工修正沉淀为可查询 Memory，而非只依赖向量库。</p></div>
+<div class="card key"><h3>Text-to-SQL 进入 System 1 / 2 级联</h3><p>LuthorSQL 11/13 提出本地 7B 快速门控，不确定时再升级强模型；论文报告约半数测试问题可本地处理并降低 API 成本。</p><p><b>判断：</b>企业 Data Agent 可以用快模型+验证器控制成本与延迟。</p></div>
+<div class="card key"><h3>MCP/Skill 开始进入分发治理层</h3><p>FastMCP 4.2 在 11/13 加入实验性 Skills over MCP；MCP 2026-07-28 已转向无状态协议层。</p><p><b>判断：</b>企业需要 Tool/Skill Gateway、Identity、Policy、Audit、Catalog，而非 Agent 直连数据系统。</p></div>
+<div class="card key"><h3>Agent 已成为分析平台消费者</h3><p>Doris Summit 2026 给出银行案例：Agent 通过 MCP 查询 Doris、读取受治理模型分数并解释风险。</p><p><b>判断：</b>Data Platform 的接口对象从人/BI扩展到机器 Agent，权限、SLA、并发、审计需要重设计。</p></div>
+</div><div class="quote"><b>趋势：</b>未来 1–3 个月最值得关注的不是“又一个 Agent Framework”，而是 <b>Agent Workload 如何进入数据平台控制面</b>：调度、权限、Tool/Skill、Memory、Trace、Evaluation、成本和生命周期形成闭环。</div></section>
+
+<section><h2>2. 本周技术雷达 <span class="sub">10 项；🟢生产 / 🟡PoC或研究 / 🔵观察</span></h2>
+<table><tr><th>方向</th><th>技术/项目</th><th>本周变化</th><th>成熟度</th><th>价值</th><th>动作</th></tr>
+<tr><td>Agent Memory</td><td><b>ClickHouse Loom</b></td><td>11/13 开源；共享代码索引与 Agent Memory。</td><td>🟡</td><td class="score">★★★★★</td><td>P1：研究结构化 Memory。</td></tr>
+<tr><td>Text-to-SQL</td><td><b>LuthorSQL</b></td><td>11/13 arXiv；7B System-1 门控。</td><td>🟡</td><td class="score">★★★★★</td><td>P0：做级联 PoC。</td></tr>
+<tr><td>Text-to-SQL</td><td><b>MEM-SQL</b></td><td>11/13 arXiv；历史 SQL 复用与 HARE。</td><td>🟡</td><td class="score">★★★★☆</td><td>P1：SQL Memory。</td></tr>
+<tr><td>MCP/Skill</td><td><b>FastMCP 4.2</b></td><td>11/13；服务端 Skill Catalog。</td><td>🟡</td><td class="score">★★★★★</td><td>P0：Skill Registry。</td></tr>
+<tr><td>Agent 运维</td><td><b>ITOps Observability Studio</b></td><td>11/15 arXiv；多模态多 Agent 运维。</td><td>🟡</td><td class="score">★★★★☆</td><td>P1：映射 Flink/YARN/Kafka。</td></tr>
+<tr><td>实时分析×Agent</td><td><b>Apache Doris 2026</b></td><td>11/11 Summit Recap；MCP + governed analytics 生产案例。</td><td>🟢</td><td class="score">★★★★★</td><td>P0：Doris MCP 权限审计。</td></tr>
+<tr><td>AI Data Platform</td><td><b>ClickHouse Platform</b></td><td>11/9 扩展 Postgres、Observability、Security、AI；收购 Xata。</td><td>🟡</td><td class="score">★★★★☆</td><td>P1：研究 Agent State/Trace。</td></tr>
+<tr><td>数据库工程</td><td><b>ClickHouse 26.10</b></td><td>11/15 发现 ORDER BY LIMIT re-merge sort 内存回归，示例约 5×。</td><td>🟢</td><td class="score">★★★★☆</td><td>P1：生产 Query Replay。</td></tr>
+<tr><td>流平台</td><td><b>Kafka 4.3.2</b></td><td>10/23 发布；本周无新核心版本。</td><td>🟢</td><td class="score">★★★☆☆</td><td>P2：升级基线。</td></tr>
+<tr><td>Spark/Lakehouse</td><td><b>Spark 4.3 + Iceberg/Paimon</b></td><td>本周无足够高密度核心版本变化；关注 Agent 数据访问集成。</td><td>🟢</td><td class="score">★★★☆☆</td><td>P2：兼容性观察。</td></tr></table></section>
+
+<section><h2>3. 深度分析</h2>
+<div class="detail"><div class="card"><h3>01 · LuthorSQL：本地 System 1</h3><p><b>是什么：</b>7B 非自回归 Text-to-SQL，用快速候选计划+validator 做门控，低置信度升级强 Agent。</p><p><b>相关性：</b>Data Agent 可把强模型从“每次必调用”变成长尾兜底层。</p><ul class="list"><li>场景：BI 问答、内部数据门户、成本敏感 SQL Agent。</li><li>路径：问题分类 → 本地 SQL → EXPLAIN/执行验证 → 强模型兜底 → 审计。</li><li>风险：业务语义、权限、方言和 schema 分布会改变收益。</li><li>PoC：500 条真实问答，比较准确率、P95、Token、API 成本。</li></ul></div>
+<div class="card"><h3>02 · MEM-SQL：把已验证 SQL 变成资产</h3><p>存储查询模板、SQL blocks、业务概念→Schema 映射，并按证据决定是否查 Schema。</p><p>论文报告：HARE 上平均执行准确率 37.1%→50.0%，输入 Token -76.6%，平均延迟 -68.8%。</p><p><b>建议：</b>Data Agent Memory 至少维护 Verified SQL / Join / Metric / Schema mapping / Feedback 五类结构化记忆。</p></div></div>
+<div class="detail"><div class="card"><h3>03 · FastMCP 4.2：Skill 可分发</h3><p>服务端 Skill Catalog 让 Skill 与 Tool 同处 MCP Server，客户端按需发现。</p><p><b>数据平台应用：</b>Kafka 故障诊断、Flink Checkpoint、Doris SQL 治理、YARN OOM 恢复等可成为受治理 Skill。</p><p><b>边界：</b>实验性扩展，不应把协议支持等同于生产治理完成。</p></div>
+<div class="card"><h3>04 · Doris：Agent 正式成为分析消费者</h3><p>Summit 案例显示银行 Agent 通过 MCP 查询 Doris，读取受治理模型分数并解释风险。</p><p><b>架构：</b>Semantic Layer + Row/Column Policy + MCP + SQL Audit + Lineage + Citation。</p><p><b>PoC：</b>20 个业务问题，限制到 5–10 张治理表，记录身份、权限、SQL、来源列。</p></div></div>
+<div class="detail"><div class="card"><h3>05 · ITOps Observability Studio</h3><p>11/15 arXiv：数据访问、Schema、可视化、Trace 生命周期拆成专门 Agent，并统一工具接入。</p><p><b>启发：</b>拆成 Kafka/Flink/YARN/DQ/Lineage Agent，由 Orchestrator 汇总证据。</p><p><b>风险：</b>多 Agent 增加通信、权限与错误传播；必须有确定性 Policy/Approval。</p></div>
+<div class="card"><h3>06 · ClickHouse Loom</h3><p>11/13 发布，基于 ClickHouse 构建共享代码索引与 Agent Memory。</p><p><b>迁移到 Data Agent：</b>SQL、Query Plan、耗时、失败原因、人工反馈、数据版本均可作为 Memory Event。</p></div></div>
+<div class="detail"><div class="card"><h3>07 · ClickHouse 26.10：Query Replay 是升级门禁</h3><p>11/15 社区发现 ORDER BY LIMIT re-merge sort 内存回归，示例 266MB→1.37GB。</p><p><b>建议：</b>采样 Top SQL + Agent SQL，fingerprint→replay→CPU/Memory/P95/错误率，作为升级门禁。</p></div>
+<div class="card"><h3>08 · Flink/Spark/Kafka 本周“不更新”也是信号</h3><p>本周检索未发现足够高信息密度的核心稳定版发布；Kafka 4.3.2 为 10/23 稳定基线，Spark 当前主线文档为 4.3.0。</p><p><b>判断：</b>本周投资重点应是 Agent 调度、诊断、治理，而非追逐版本号。</p></div></div></section>
+
+<section><h2>4. 优先试点 Top 4</h2><div class="pri">
+<div class="card"><span class="tag p0">P0</span><h3>Fast SQL → Validator → Strong Model</h3><p>500 条真实问题；本地 7B → EXPLAIN/执行 → 低置信度升级。</p><p><b>指标：</b>Execution Accuracy、P95、升级率、Token/Query、API 成本。</p></div>
+<div class="card"><span class="tag p0">P0</span><h3>Doris MCP + Governance</h3><p>10 张治理表 + 20 问题 + Row/Column Policy + MCP + SQL Audit。</p><p><b>指标：</b>正确率、越权率、可追溯率、P95、人工修正率。</p></div>
+<div class="card"><span class="tag p1">P1</span><h3>Flink/YARN/Kafka Agent Control Plane</h3><p>先 Read-only Tool，覆盖 Lag、Checkpoint、Container、Logs、Job State。</p><p><b>指标：</b>根因 Top-1、证据完整率、MTTR、误诊率。</p></div>
+<div class="card"><span class="tag p1">P1</span><h3>Skill Registry over MCP</h3><p>注册 5 个数据运维 Skill；动态发现；记录版本、依赖、风险和执行日志。</p><p><b>指标：</b>Skill 命中率、Tool 错选率、Catalog 延迟、拒绝率。</p></div></div></section>
+
+<section><h2>5. 架构演进视角</h2><div class="card"><div class="arch">                    Data / Ops Agent
+                           │
+                      Skill / MCP
+                           │
+              ┌────────────▼────────────┐
+              │    Agent Control Plane  │
+              │ Identity · Policy       │
+              │ Approval · Audit        │
+              │ RateLimit · Evaluation  │
+              └────────────┬────────────┘
+                           │
+       ┌───────────────────┼────────────────────┐
+       ▼                   ▼                    ▼
+  Scheduler           Query Gateway        Tool Gateway
+ Airflow / K8s       Doris / CH / Lake     Flink / Kafka / YARN
+       │                   │                    │
+    Spark/Flink        Iceberg/Paimon       Metrics / Logs
+       └───────────────────┼────────────────────┘
+                           ▼
+                Trace / Lineage / DQ / Cost
+                           │
+                     Memory / Eval</div><p><b>核心变化：</b>过去平台围绕“人提交 Job、BI 查询表”；Agent 进入后，应把 Agent 当作高并发、可编程、带副作用的 workload，统一治理权限、调度、缓存、审计、评测、成本和生命周期。</p></div></section>
+
+<section><h2>6. 趋势判断</h2><div class="grid"><div class="card"><span class="tag">短期可落地</span><h3>Agent-aware Data Gateway</h3><p>统一身份、SQL、MCP、Catalog、Lineage、Audit；先只读，再低风险动作。</p></div><div class="card"><span class="tag">短期可落地</span><h3>System 1 / System 2 Data Agent</h3><p>小模型、规则、缓存和历史 SQL 处理大部分简单请求，强模型处理长尾。</p></div><div class="card"><span class="tag">中期观察</span><h3>Skill Registry + Policy</h3><p>Skill 从本地 prompt 文件变成可发现、版本化、可审计、可授权资产。</p></div><div class="card"><span class="tag">中期观察</span><h3>Agent-aware Scheduler</h3><p>调度器开始感知 priority、budget、tool dependency、SLA、risk。</p></div><div class="card"><span class="tag">前沿研究</span><h3>Memory = 数据资产</h3><p>SQL、Trace、Feedback、Schema、Lineage、事件与向量/全文索引融合。</p></div></div></section>
+
+<section><h2>7. 推荐阅读</h2><div class="card"><ol class="list">
+<li><b>P0 · LuthorSQL</b> — <a href="https://arxiv.org/abs/2611.17780" target="_blank" rel="noopener noreferrer">arXiv 2611.17780</a> · 2026-11-13：最直接的 SQL Agent 降本/降延迟路线。</li>
+<li><b>P0 · MEM-SQL</b> — <a href="https://arxiv.org/abs/2611.18338" target="_blank" rel="noopener noreferrer">arXiv 2611.18338</a> · 2026-11-13：把历史已验证 SQL 变成长期资产。</li>
+<li><b>P0 · Doris Summit 2026</b> — <a href="https://doris.apache.org/blog/doris-summit-2026-recap/" target="_blank" rel="noopener noreferrer">Apache Doris 官方</a> · 2026-11-11：MCP + Agent + governed analytics 的生产案例。</li>
+<li><b>P1 · ITOps Observability Studio</b> — <a href="https://arxiv.org/abs/2611.19982" target="_blank" rel="noopener noreferrer">arXiv 2611.19982</a> · 2026-11-15：可迁移到 Flink/YARN/Kafka 智能运维。</li>
+<li><b>P1 · Loom</b> — <a href="https://clickhouse.com/blog/introducing-loom-agent-memory-that-keeps-up-with-your-code" target="_blank" rel="noopener noreferrer">ClickHouse Engineering</a> · 2026-11-13：研究结构化数据平台承载 Agent Memory。</li>
+</ol></div></section>
+
+<section><h2>8. 本周最值得亲自验证的一件事</h2><div class="card"><h3>Data Agent：本地 SQL System-1 + 强模型 System-2</h3><p><b>目标：</b>验证在准确率基本持平时能否降低 P95 与 API 成本。</p><div class="arch">问题 → Intent/Risk Gate → Local 7B Text-to-SQL
+                  ↓
+            SQL Validator ──低置信度──► Strong LLM
+                  ↓
+          EXPLAIN / Execute
+                  ↓
+      Result + Citation + SQL Trace
+                  ↓
+             Memory / Eval</div><p><b>步骤：</b>500 条真实问题 → 建业务 Schema/Metric context → 本地生成 → 权限/EXPLAIN/执行验证 → 低置信度升级 → 与 baseline 对比。</p><p><b>门槛：</b>Execution Accuracy ≥ baseline 的 95%；同时统计升级率、P95、Token/Query、API 成本、越权率、错误 SQL 率。</p><p><b>预期：</b>若 40%–60% 请求可安全走本地路径且准确率基本持平，值得进入生产化。</p></div></section>
+
+<footer><b>数据来源与筛选原则：</b>优先 Apache 官方、GitHub、ClickHouse/Doris 官方工程文章、arXiv 原论文；厂商数字标注为官方/作者报告，不当作独立验证。未发现本周足够高信息密度的 Flink/Spark 核心版本更新，不为凑数虚构变化。Kafka 4.3.2 于 2026-10-23 发布，本期仅作稳定基线。<br><b>更新时间：</b>2026-11-18 10:00（Asia/Shanghai） · <a href="https://ningyanhui.github.io/ningyanhui/" target="_blank" rel="noopener noreferrer">固定站点</a></footer>
 </div></body></html>
